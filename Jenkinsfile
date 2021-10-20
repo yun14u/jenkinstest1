@@ -1,12 +1,11 @@
 pipeline{
 
 	agent {label 'asrock'}
-
 	stages {
 	    stage('gitclone') {
 
 			steps {
-                               sh 'echo gitclone - use git ... '
+                               sh 'echo gitclone - use git !!! '
 			}
 		}
 
