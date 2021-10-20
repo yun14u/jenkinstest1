@@ -6,7 +6,7 @@ pipeline{
 	    stage('gitclone') {
 
 			steps {
-                sh 'echo gitclone - use git '
+                               sh 'echo gitclone - use git ... '
 			}
 		}
 
