@@ -2,7 +2,6 @@ pipeline{
 
 	agent {label 'asrock'}
 
-
 	stages {
 	    when {
             allOf {
