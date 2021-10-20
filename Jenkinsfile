@@ -4,14 +4,17 @@ pipeline{
         stages {
             
             stage('alpha') { 
+                        when {
+                               expression { $GIT_BRANCH == "alpha" }                            
+                        }
                         steps {
-                               sh 'echo GIT_BRANCH $GIT_BRANCH '
+                                sh 'echo alpha !'
                         }
                 }
 
                 stage('uat') {
                         when {
-                               expression { env.BRANCH_NAME == "origin/uat" }                            
+                               expression { $GIT_BRANCH == "uat" }                            
                         }
                         steps {
                                 sh 'echo uat !!'
