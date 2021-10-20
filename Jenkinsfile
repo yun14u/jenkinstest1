@@ -5,7 +5,7 @@ pipeline{
             
             stage('alpha') { 
                         when {
-                               expression { $GIT_BRANCH == "alpha" }                            
+                              branch 'alpha'                           
                         }
                         steps {
                                 sh 'echo alpha !'
@@ -14,7 +14,7 @@ pipeline{
 
                 stage('uat') {
                         when {
-                               expression { $GIT_BRANCH == "uat" }                            
+                               branch 'uat'                          
                         }
                         steps {
                                 sh 'echo uat !!'
