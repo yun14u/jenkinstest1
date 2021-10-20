@@ -5,7 +5,7 @@ pipeline{
             
             stage('alpha') { 
                         when {
-                               expression { $GIT_BRANCH == "alpha" }                            
+                               expression { env.GIT_BRANCH == "alpha" }                            
                         }
                         steps {
                                 sh 'echo alpha !'
