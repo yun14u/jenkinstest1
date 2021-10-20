@@ -1,37 +1,42 @@
 pipeline{
 
-	agent {label 'asrock'}
+        agent {label 'asrock'}
 
 
-	stages {
-	    
-	    stage('gitclone') {
+        stages {
+            
+            stage('alpha') {
+                        steps {
+                               sh 'echo alpha ! '
+                        }
+                }
 
-			steps {
-                sh 'echo gitclone - use git '
-			}
-		}
+                stage('uat') {
+                        when {
+                            allOf {
+                               expression { env.BRANCH_NAME == "origin/uat" }
+                               expression { params.merged == true }
+                               expression { params.current_status == "closed" }
+                            }
+                        }
+                        steps {
+                                sh 'echo uat !!'
+                        }
+                }
 
-		stage('Build') {
+                stage('prod') {
+                        when {
+                            allOf {
+                               expression { env.BRANCH_NAME == "origin/main" }
+                               expression { params.merged == true }
+                               expression { params.current_status == "closed" }
+                            }
+                        }
+                        steps {
+                                sh 'echo prod !!! '
+                        }
+                }
 
-			steps {
-				sh 'echo docker build '
-			}
-		}
-
-		stage('Login') {
-
-			steps {
-				sh 'echo DOCKERHUB_CREDENTIALS_PSW to docker login '
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-				sh 'echo docker push'
-			}
-		}
-	}
+        }
 
 }
