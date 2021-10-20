@@ -5,30 +5,38 @@ pipeline{
 
         stages {
             
-            stage('gitclone') {
+            stage('alpha') {
                         steps {
-                               sh 'echo gitclone - use git '
+                               sh 'echo alpha ! '
                         }
                 }
 
-                stage('Build') {
+                stage('uat') {
+                        when {
+                            allOf {
+                               expression { env.BRANCH_NAME == "origin/uat" }
+                               expression { params.merged == true }
+                               expression { params.current_status == "closed" }
+                            }
+                        }
                         steps {
-                                sh 'echo docker build '
+                                sh 'echo uat !!'
                         }
                 }
 
-                stage('Login') {
+                stage('prod') {
+                        when {
+                            allOf {
+                               expression { env.BRANCH_NAME == "origin/main" }
+                               expression { params.merged == true }
+                               expression { params.current_status == "closed" }
+                            }
+                        }
                         steps {
-                                sh 'echo DOCKERHUB_CREDENTIALS_PSW to docker login '
+                                sh 'echo prod !!! '
                         }
                 }
 
-                stage('Push') {
-
-                        steps {
-                                sh 'echo docker push'
-                        }
-                }
         }
 
 }
