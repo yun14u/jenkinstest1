@@ -5,7 +5,7 @@ pipeline{
             
             stage('alpha') { 
                         steps {
-                               sh 'GIT_BRANCH $GIT_BRANCH '
+                               sh 'echo GIT_BRANCH $GIT_BRANCH '
                         }
                 }
 
