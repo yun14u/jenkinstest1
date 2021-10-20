@@ -4,7 +4,6 @@ pipeline{
 
 
 	stages {
-	    
 	    stage('gitclone') {
 
 			steps {
