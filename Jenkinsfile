@@ -1,23 +1,20 @@
 pipeline{
 
         agent {label 'asrock'}
-
-
         stages {
             
-            stage('alpha') {
+            stage('alpha') { 
+                        when {
+                              branch 'alpha'                           
+                        }
                         steps {
-                               sh 'echo alpha ! '
+                                sh 'echo alpha !'
                         }
                 }
 
                 stage('uat') {
                         when {
-                            allOf {
-                               expression { env.BRANCH_NAME == "origin/uat" }
-                               expression { params.merged == true }
-                               expression { params.current_status == "closed" }
-                            }
+                               branch 'uat'                          
                         }
                         steps {
                                 sh 'echo uat !!'
@@ -26,11 +23,7 @@ pipeline{
 
                 stage('prod') {
                         when {
-                            allOf {
-                               expression { env.BRANCH_NAME == "origin/main" }
-                               expression { params.merged == true }
-                               expression { params.current_status == "closed" }
-                            }
+                               branch 'main'
                         }
                         steps {
                                 sh 'echo prod !!! '
