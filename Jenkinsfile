@@ -6,7 +6,19 @@ pipeline{
                genericVariables: [
                 [key: 'ref', value: '$.ref'],
                 [key: 'merged', value: '$.merged'] 
-               ]
+               ],
+                causeString: 'Triggered on $ref',
+
+               token: '',
+               tokenCredentialId: '',
+
+               printContributedVariables: true,
+               printPostContent: true,
+
+               silentResponse: false,
+
+               regexpFilterText: '$ref',
+               regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
             )
         }
         stages {
@@ -27,7 +39,7 @@ pipeline{
                         }
                         steps {
                                 sh 'echo uat !!'
-                                sh 'echo merged $merged'
+                                sh 'echo ref $ref'
                         }
                 }
 
