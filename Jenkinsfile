@@ -1,6 +1,13 @@
 pipeline{
 
         agent {label 'asrock'}
+        triggers {
+            GenericTrigger(
+               genericVariables: [
+                [key: 'ref', value: '$.ref'],
+                [key: 'merged', value: '$.merged'] 
+               ]
+        }
         stages {
             
             stage('alpha') { 
@@ -9,6 +16,7 @@ pipeline{
                         }
                         steps {
                                 sh 'echo alpha !'
+                                sh 'echo ref $ref'
                         }
                 }
 
@@ -18,6 +26,7 @@ pipeline{
                         }
                         steps {
                                 sh 'echo uat !!'
+                                sh 'echo merged $merged'
                         }
                 }
 
