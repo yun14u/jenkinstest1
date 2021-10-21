@@ -7,6 +7,7 @@ pipeline{
                 [key: 'ref', value: '$.ref'],
                 [key: 'merged', value: '$.merged'] 
                ]
+            )
         }
         stages {
             
