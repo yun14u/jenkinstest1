@@ -23,7 +23,7 @@ pipeline{
 
                 stage('prod') {
                         when {
-                               expression { env.BRANCH_NAME == "origin/main" }
+                               branch 'main'
                         }
                         steps {
                                 sh 'echo prod !!! '
