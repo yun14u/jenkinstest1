@@ -1,26 +1,7 @@
 pipeline{
 
         agent {label 'asrock'}
-        triggers {
-            GenericTrigger(
-               genericVariables: [
-                [key: 'ref', value: '$.ref'],
-                [key: 'merged', value: '$.merged'] 
-               ],
-                causeString: 'Triggered on $ref',
-
-               token: 'ThisISMyTOKEN',
-               tokenCredentialId: '',
-
-               printContributedVariables: true,
-               printPostContent: true,
-
-               silentResponse: false,
-
-               regexpFilterText: '$ref',
-               regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
-            )
-        }
+        
         stages {
             
             stage('alpha') { 
@@ -29,7 +10,6 @@ pipeline{
                         }
                         steps {
                                 sh 'echo alpha !'
-                                sh 'echo ref $ref'
                         }
                 }
 
@@ -38,8 +18,7 @@ pipeline{
                                branch 'uat'                          
                         }
                         steps {
-                                sh 'echo uat !!'
-                                sh 'echo ref $ref'
+                                sh 'echo uat **'
                         }
                 }
 
@@ -48,7 +27,7 @@ pipeline{
                                branch 'main'
                         }
                         steps {
-                                sh 'echo prod !!! '
+                                sh 'echo prod %%% '
                         }
                 }
 
