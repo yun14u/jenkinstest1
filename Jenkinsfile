@@ -1,7 +1,6 @@
 pipeline{
 
         agent {label 'asrock'}
-        
         stages {
             
             stage('alpha') { 
